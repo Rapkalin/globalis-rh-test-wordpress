@@ -1,7 +1,5 @@
-<?php do_action( 'filter_page_access' ); ?>
-
 <!doctype html>
-<html <?php language_attributes(); ?>>
+    <html <?php language_attributes(); ?>>
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -9,6 +7,7 @@
         <?php wp_head(); ?>
     </head>
     <body>
-        <h1><?php the_title(); ?>
-    </body>
-</html>
+        <h1>Maybe you are not lost, <br> but this page is not found</h1>
+        <h1>404 alert!</h1>
+     </body>
+</html><?php
