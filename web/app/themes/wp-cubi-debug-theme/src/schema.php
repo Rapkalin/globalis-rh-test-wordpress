@@ -17,8 +17,6 @@ function register_post_type_event()
         'menu_position'       => 25,
         'menu_icon'           => 'dashicons-calendar-alt',
         'capability_type'     => 'post',
-        // 'capabilities'        => [],
-        // 'map_meta_cap'        => false,
         'supports'            => ['title'],
         'has_archive'         => false,
         'rewrite'             => ['slug' => 'events', 'pages' => true, 'feeds' => false, 'with_front' => false],
@@ -46,12 +44,12 @@ function register_post_type_event()
             'registrations' => ['title' => 'Registrations', 'sortable' => false, 'function' => function () {
                 global $post;
                 global $wpdb;
-                $sql_query = $wpdb->prepare("SELECT COUNT(`post_id`) as count FROM %i WHERE `meta_key` = 'registration_event_id' AND `meta_value` = %d", $wpdb->postmeta, $post_id);
+                $sql_query = $wpdb->prepare("SELECT COUNT(`post_id`) as count FROM %i WHERE `meta_key` = 'registration_event_id' AND `meta_value` = %d", $wpdb->postmeta, $post->ID);
                 $result = $wpdb->get_row($sql_query, ARRAY_A);
                 echo $result['count'];
             }],
         ],
-        'admin_filters'        => [],
+        'admin_filters' => [],
     ];
 
     $names = [
@@ -77,8 +75,6 @@ function register_post_type_registration()
         'menu_position'       => 30,
         'menu_icon'           => 'dashicons-tickets',
         'capability_type'     => 'post',
-        // 'capabilities'        => [],
-        // 'map_meta_cap'        => false,
         'supports'            => false,
         'has_archive'         => false,
         'rewrite'             => ['slug' => 'registrations', 'pages' => true, 'feeds' => false, 'with_front' => false],
@@ -110,7 +106,7 @@ function register_post_type_registration()
                 <?php
             }],
         ],
-        'admin_filters'        => [],
+        'admin_filters' => [],
     ];
 
     $names = [
