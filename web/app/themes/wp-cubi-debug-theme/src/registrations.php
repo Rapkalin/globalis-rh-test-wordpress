@@ -10,10 +10,10 @@ add_action('edit_form_after_title', __NAMESPACE__ . '\\display_custom_title_fiel
 
 function save_auto_title($data, $postarr)
 {
-    if (! $data['post_type'] === 'registrations') {
-        return $data;
-    }
-    if ('auto-draft' == $data['post_status']) {
+    if (
+            $data['post_type'] !== 'registrations' ||
+            $data['post_status'] === 'auto-draft'
+    ) {
         return $data;
     }
 
