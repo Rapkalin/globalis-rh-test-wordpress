@@ -88,6 +88,10 @@ define('WP_CUBI_PUBLIC_URLS', [
     'production' => 'https://example.com/',
 ]);
 
+/* PDF API */
+define('PDF_TEMPLATE_ID', WP_CUBI_CONFIG['PDF_TEMPLATE_ID']);
+define('PDF_API_KEY', WP_CUBI_CONFIG['PDF_API_KEY']);
+
 /* EMAIL */
 define('WP_MAIL_FROM_EMAIL', 'example@example.com');
 define('WP_MAIL_FROM_NAME', 'GLOBALIS RH TEST WP');
