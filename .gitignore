@@ -39,3 +39,6 @@
 # WordPress Media / Uploads
 /web/media/*
 !/web/media/.gitkeep
+
+# other
+.idea
