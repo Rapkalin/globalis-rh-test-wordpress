@@ -2,6 +2,7 @@
 
 require_once __DIR__ . '/src/schema.php';
 require_once __DIR__ . '/src/registrations.php';
+require_once __DIR__ . '/src/events.php';
 
 add_action('filter_page_access', 'do_filter_page_access');
 
@@ -26,3 +27,5 @@ function do_filter_page_access(): void
         exit();
     }
 }
+
+

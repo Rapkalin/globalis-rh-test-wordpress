@@ -48,6 +48,33 @@ function register_post_type_event()
                 $result = $wpdb->get_row($sql_query, ARRAY_A);
                 echo $result['count'];
             }],
+            'export' => ['title' => 'Export', 'sortable' => false, 'function' => function () {
+                global $post;
+                global $wpdb;
+
+                /** Retrieve all the registrations for the current event */
+                $sql_query = $wpdb->prepare("SELECT `post_id` FROM %i WHERE `meta_key` = 'registration_event_id' AND `meta_value` = %d", $wpdb->postmeta, $post->ID);
+                $results = $wpdb->get_results($sql_query, ARRAY_A);
+
+                $registrations = [];
+                foreach ($results as $result) {
+                    $registration_id = (int) $result['post_id'];
+                    $registrations[] = [
+                        // Retrieve all needed information for each person
+                        'firstName' => get_post_meta($registration_id, 'registration_first_name', true),
+                        'lastName' => get_post_meta($registration_id, 'registration_last_name', true),
+                        'email' => get_post_meta($registration_id, 'registration_email', true),
+                        'phone' => get_post_meta($registration_id, 'registration_phone', true),
+                    ];
+                }
+
+                // Generate the download link
+                $downloadUrl = apply_filters('generate_download_export_url', $registrations, strtolower($post->post_title));
+
+                ?>
+                <a href="<?= $downloadUrl ?>">Export</a>
+                <?php
+            }]
         ],
         'admin_filters' => [],
     ];
